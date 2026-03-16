@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const TemperatureDisplay = document.getElementById("temperature");
     const descriptionDisplay = document.getElementById("description");
     const errorDisplay = document.getElementById("error-message");
-
     const API_KEY = `9b3b62d358a051d24663a81be4eed1e0`;
 
     getweatherbtn.addEventListener("click", async () => {
