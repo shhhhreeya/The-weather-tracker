@@ -24,36 +24,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-async function fetchWeatherData(city){
-    //gets data
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
+    async function fetchWeatherData(city){
+        //gets data
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
 
-    const response = await fetch(url);
-    console.log(typeof response)
-    console.log("RESPONSE", response)
+        const response = await fetch(url);
+        console.log(typeof response)
+        console.log("RESPONSE", response)
 
-    if (!response.ok){
-        throw new Error("City not found!");
+        if (!response.ok){
+            throw new Error("City not found!");
+        }
+        const data = await response.json();
+        return data;
     }
-    const data = await response.json();
-    return data;
-}
-async function displayWeatherData(weatherData){
-    //displays data
-    console.log(weatherData); //shows the data fetched in web console
-    const {name, main, weather} = weatherData; //name is string, main is obj and weather is array
-    cityNameDisplay.textContent = name;
-    TemperatureDisplay.textContent = `Temperature : ${main.temp}`;
-    descriptionDisplay.textContent = `Weather : ${weather[0].description}`;
+    async function displayWeatherData(weatherData){
+         //displays data
+        console.log(weatherData); //shows the data fetched in web console
+        const {name, main, weather} = weatherData; //name is string, main is obj and weather is array
+        cityNameDisplay.textContent = name;
+        TemperatureDisplay.textContent = `Temperature : ${main.temp}`;
+        descriptionDisplay.textContent = `Weather : ${weather[0].description}`;
 
-    //unlock the display
-    weatherinfo.classList.remove("hidden");
-    errorDisplay.classList.add("hidden");
+        //unlock the display
+        weatherinfo.classList.remove("hidden");
+        errorDisplay.classList.add("hidden");
 
-}
-async function showError(){
-    weatherinfo.classList.add("hidden");
-    errorDisplay.classList.remove("hidden");
-}
+    }
+    async function showError(){
+        weatherinfo.classList.add("hidden");
+        errorDisplay.classList.remove("hidden");
+    }
 
 });
